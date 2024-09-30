@@ -1,0 +1,57 @@
+.accordeon {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.accordeon_fluid {
+  width: 10%;
+}
+
+.accordeon_mini_btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  background-color: #42b983;
+}
+
+.arrow {
+  color: white;
+}
+
+.accordeon_mini_fall {
+  display: grid;
+  background-color: #42b983;
+  border-radius: 0 0 5px 5px;
+  grid-template-rows: 0fr;
+  transition: all 240ms ease-in-out;
+  overflow: hidden;
+  transform: translateY(-5px);
+}
+
+.accordeon_fall_open {
+  grid-template-rows: 1fr;
+}
+
+.accordeon_fall_container {
+  display: flex;
+  height: 0;
+  padding: 0;
+  flex-direction: column;
+  gap: 8px;
+  visibility: hidden;
+  transition: all 240ms ease-in-out;
+}
+
+.accordeon_fall_container_open {
+  visibility: visible;
+  padding: 12px 0 12px 0;
+  height: fit-content;
+}
+
+.accordeon_mini_text {
+  display: grid;
+  grid-template-columns: 2fr 5fr 1fr 2fr;
+  justify-content: space-between;
+}

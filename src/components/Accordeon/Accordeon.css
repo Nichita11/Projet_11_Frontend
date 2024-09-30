@@ -1,0 +1,73 @@
+.accordeon {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.accordeon_fluid {
+  width: 100%;
+}
+
+.accordeon_btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 5px;
+  height: 200px;
+  background-color: #3d3d3d;
+  padding: 0 20px;
+}
+
+.accordeon_text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.account-title {
+  font-size: 20px;
+}
+
+.arrow {
+  color: white;
+}
+
+.accordeon_fall {
+  display: grid;
+  background-color: rgb(240, 240, 240);
+  border-radius: 0 0 5px 5px;
+  grid-template-rows: 0fr;
+  transition: all 240ms ease-in-out;
+  overflow: hidden;
+  transform: translateY(-5px);
+}
+
+.accordeon_fall_open {
+  grid-template-rows: 1fr;
+}
+
+.accordeon_fall_container {
+  display: flex;
+  height: 0;
+  padding: 0;
+  flex-direction: column;
+  gap: 8px;
+  visibility: hidden;
+  transition: all 240ms ease-in-out;
+}
+
+.accordeon_fall_container_open {
+  visibility: visible;
+  padding: 12px 0 12px 0;
+  height: fit-content;
+}
+
+.accordeon_fall_content {
+  display: grid;
+  grid-template-columns: 2fr 5fr 1fr 2fr;
+  justify-content: space-between;
+}
