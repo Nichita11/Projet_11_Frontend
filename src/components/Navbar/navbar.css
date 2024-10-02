@@ -21,14 +21,18 @@
 .main-nav {
   display: grid;
   flex-direction: column;
-  gap: 16px;
   padding: 5px 0;
-  grid-template-columns: 48px [content-start] 1fr [content-end] 48px;
+  grid-template-columns: 20px [content-start] 1fr [content-end] 20px;
+
+  @media (min-width: 720px) {
+    grid-template-columns: 48px [content-start] 1fr [content-end] 48px;
+  }
 }
 
-.nav-content{
+.nav-content {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   grid-column: content;
 }
 
@@ -67,6 +71,21 @@
 }
 
 .main-nav-logo-image {
+  display: none;
   max-width: 100%;
   width: 200px;
+
+  @media (min-width:720px) {
+    display: block;
+  }
+}
+
+.main-nav-logo-image-mobile {
+  display: block;
+  height: auto;
+  width: 48px;
+
+  @media (min-width:720px) {
+    display: none;
+  }
 }

@@ -24,11 +24,16 @@ export default function Navbar() {
             src="/argentBankLogo.png"
             alt="Argent Bank Logo"
           />
+          <img
+            className="main-nav-logo-image-mobile"
+            src="/logoMobile.jpg"
+            alt="Argent Bank Logo Mobile"
+          />
           <h1 className="sr-only">Argent Bank</h1>
         </Link>
         <div className="main-nav-right-flex">
           <Link className="main-nav-item" to="/sign-in">
-            {userName}
+            <div>{userName}</div>
             <FontAwesomeIcon
               className="main-nav-icon"
               icon={faUserCircle}
@@ -42,13 +47,15 @@ export default function Navbar() {
               size="2x"
             />
           </Link>
-          <div className="main-nav-item" onClick={() => dispatch(logout())}>
-            <FontAwesomeIcon
-              className="main-nav-icon"
-              icon={faPowerOff}
-              size="2x"
-            />
-          </div>
+          {userData !== null && (
+            <div className="main-nav-item" onClick={() => dispatch(logout())}>
+              <FontAwesomeIcon
+                className="main-nav-icon"
+                icon={faPowerOff}
+                size="2x"
+              />
+            </div>
+          )}
         </div>
       </div>
     </nav>

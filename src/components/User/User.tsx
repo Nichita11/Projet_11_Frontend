@@ -15,6 +15,12 @@ import { useLoaderData } from "react-router-dom"
 //   id: string
 // } | null = null
 
+const userAccounts: { transactions: number; balance: string }[] = [
+  { transactions: 566, balance: "$200.56" },
+  { transactions: 201, balance: "$50000.00" },
+  { transactions: 69, balance: "$420.69" },
+]
+
 export default function User() {
   const userData: any = useLoaderData()
   const [form, setForm] = useState<{
@@ -49,7 +55,7 @@ export default function User() {
   }
   return (
     // @ts-ignore
-    <Layout >
+    <Layout>
       <main className="main bg-bright">
         <div className="header">
           <h1 className="User_info">Edit user info</h1>
@@ -131,42 +137,14 @@ export default function User() {
           </button>
         </div>
 
-        {/* <h2 className="sr-only">Accounts</h2>
-        <div className="transaction-container">
-          <div className="transaction-list-wrapper">
-            <Accordeon></Accordeon>
+        <h2 className="sr-only">Accounts</h2>
+        {userAccounts.map((el, key) => (
+          <div className="transaction-container" key={key}>
+            <div className="transaction-list-wrapper">
+              <Accordeon {...el}></Accordeon>
+            </div>
           </div>
-        </div>
-        <section className="account">
-          <div className="account-content-wrapper">
-            <h3 className="account-title">Argent Bank Checking (x8349)</h3>
-            <p className="account-amount">$2,082.79</p>
-            <p className="account-amount-description">Available Balance</p>
-          </div>
-          <div className="account-content-wrapper cta">
-            <button className="transaction-button">View transactions</button>
-          </div>
-        </section>
-        <section className="account">
-          <div className="account-content-wrapper">
-            <h3 className="account-title">Argent Bank Savings (x6712)</h3>
-            <p className="account-amount">$10,928.42</p>
-            <p className="account-amount-description">Available Balance</p>
-          </div>
-          <div className="account-content-wrapper cta">
-            <button className="transaction-button">View transactions</button>
-          </div>
-        </section>
-        <section className="account">
-          <div className="account-content-wrapper">
-            <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
-            <p className="account-amount">$184.30</p>
-            <p className="account-amount-description">Current Balance</p>
-          </div>
-          <div className="account-content-wrapper cta">
-            <button className="transaction-button">View transactions</button>
-          </div>
-        </section> */}
+        ))}
       </main>
     </Layout>
   )

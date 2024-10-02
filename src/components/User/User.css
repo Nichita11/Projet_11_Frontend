@@ -33,6 +33,10 @@
 }
 
 .label_text {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
   color: black;
   font-weight: bold;
 }
@@ -47,15 +51,28 @@ input[type="text"] {
 .flex_button {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 0;
+  flex-direction: column;
+
+  @media (min-width: 720px) {
+    gap: 10px;
+    flex-direction: row;
+  }
 }
 
 .edit-button {
   background-color: #61b57d;
-  width: 10%;
-  margin-bottom: 20px;
+  width: 80%;
+  min-width: 120px;
+  margin: 0 20px 20px 20px;
   border: none;
   border-radius: 3px;
+  justify-self: center;
+  align-self: center;
+
+  @media (min-width: 720px) {
+    width: 10%;
+  }
 }
 
 .account {
@@ -99,6 +116,7 @@ input[type="text"] {
   gap: 16px;
   padding: 5px 0;
   grid-template-columns: 48px [content-start] 1fr [content-end] 48px;
+  margin-bottom: 20px;
 }
 
 .transaction-list-wrapper {
