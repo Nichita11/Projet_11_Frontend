@@ -35,8 +35,6 @@ body {
   white-space: nowrap !important; /* 3 */
 }
 
-
-
 .main-nav a {
   font-weight: bold;
   color: #2c3e50;
@@ -66,7 +64,7 @@ body {
 }
 
 .hero {
-  background-image: url("/bank-tree.jpeg");
+  background-image: url("/bank-tree-min.webp");
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;

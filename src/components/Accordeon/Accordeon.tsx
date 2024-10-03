@@ -2,8 +2,6 @@ import { useState } from "react"
 import "./Accordeon.css"
 import { faChevronRight, faX } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import Accordeon_mini from "../Accordeon_mini/Accordeon_mini"
-import AccordeonMini from "../Accordeon_mini/Accordeon_mini"
 
 export default function Accordeon({
   fluid = false,

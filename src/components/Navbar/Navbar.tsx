@@ -21,12 +21,12 @@ export default function Navbar() {
         <Link className="main-nav-logo" to="/">
           <img
             className="main-nav-logo-image"
-            src="/argentBankLogo.png"
+            src="/argentBankLogo-min.webp"
             alt="Argent Bank Logo"
           />
           <img
             className="main-nav-logo-image-mobile"
-            src="/logoMobile.jpg"
+            src="/logoMobile-min.webp"
             alt="Argent Bank Logo Mobile"
           />
           <h1 className="sr-only">Argent Bank</h1>

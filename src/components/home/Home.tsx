@@ -1,5 +1,28 @@
+import HomeIcons from "../HomeIcons/HomeIcons"
 import Layout from "../Layout/Layout"
 import "./home.css"
+
+const HomeIconsData: { iconSrc: string; title: string; description: string }[] =
+  [
+    {
+      iconSrc: "/icon-chat-min.webp",
+      title: "You are our #1 priority",
+      description:
+        "Need to talk to a representative? You can get in touch through our 24/7 chat or through a phone call in less than 5 minutes.",
+    },
+    {
+      iconSrc: "/icon-money-min.webp",
+      title: "More savings means higher rates",
+      description:
+        "The more you save with us, the higher your interest rate will be!",
+    },
+    {
+      iconSrc: "/icon-security-min.webp",
+      title: "Security you can trust",
+      description:
+        "We use top of the line encryption to make sure your data and money is always safe.",
+    },
+  ]
 
 export default function Home() {
   return (
@@ -19,44 +42,9 @@ export default function Home() {
           </div>
           <section className="features">
             <h2 className="sr-only">Features</h2>
-            <div className="feature-item">
-              <img
-                src="/icon-chat.png"
-                alt="Chat Icon"
-                className="feature-icon"
-              />
-              <h3 className="feature-item-title">You are our #1 priority</h3>
-              <p>
-                Need to talk to a representative? You can get in touch through
-                our 24/7 chat or through a phone call in less than 5 minutes.
-              </p>
-            </div>
-            <div className="feature-item">
-              <img
-                src="/icon-money.png"
-                alt="Chat Icon"
-                className="feature-icon"
-              />
-              <h3 className="feature-item-title">
-                More savings means higher rates
-              </h3>
-              <p>
-                The more you save with us, the higher your interest rate will
-                be!
-              </p>
-            </div>
-            <div className="feature-item">
-              <img
-                src="/icon-security.png"
-                alt="Chat Icon"
-                className="feature-icon"
-              />
-              <h3 className="feature-item-title">Security you can trust</h3>
-              <p>
-                We use top of the line encryption to make sure your data and
-                money is always safe.
-              </p>
-            </div>
+            {HomeIconsData.map((el, key) => (
+              <HomeIcons key={key} {...el} />
+            ))}
           </section>
         </main>
       </div>
