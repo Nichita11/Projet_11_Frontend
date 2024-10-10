@@ -29,13 +29,28 @@ export default function SignIn() {
       body: JSON.stringify({ email: form.username, password: form.password }),
     }).then(resposne => resposne.json())
     if (req.status === 200) {
+      let userData = null
+      await fetch("http://localhost:3001/api/v1/user/profile", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${req.body.token}`,
+        },
+      })
+        .then(res => {
+          return res.json()
+        })
+        .then(json => {
+          userData = json.body
+        })
       if (form.remember) {
-         dispatch(loginPersist(req.body.token))
+        dispatch(
+          loginPersist({ userToken: req.body.token, userData: userData }),
+        )
       } else {
-        dispatch(login(req.body.token))
+        dispatch(login({ userToken: req.body.token, userData: userData }))
       }
+      redirect("/user")
     }
-    redirect('/user')
   }
 
   return (

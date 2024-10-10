@@ -2,8 +2,12 @@ import Layout from "../Layout/Layout"
 import "./User.css"
 import { useEffect, useState } from "react"
 import Accordeon from "../Accordeon/Accordeon"
-import { selectUser } from "../../app/cerateAppSliceV2"
-import { useSelector } from "react-redux"
+import {
+  selectToken,
+  selectUser,
+  setUserData,
+} from "../../app/cerateAppSliceV2"
+import { useDispatch, useSelector } from "react-redux"
 import { useLoaderData } from "react-router-dom"
 
 // let userData: {
@@ -22,7 +26,9 @@ const userAccounts: { transactions: number; balance: string }[] = [
 ]
 
 export default function User() {
-  const userData: any = useLoaderData()
+  const userData = useSelector(selectUser)
+  const userToken = useSelector(selectToken)
+  const dispatch = useDispatch()
   const [form, setForm] = useState<{
     username: string
     Firstname: string
@@ -33,24 +39,32 @@ export default function User() {
     Lastname: userData.lastName,
   })
 
-  const user = useSelector(selectUser)
-
   const cancel = () => {
-    location.reload()
+    setForm({
+      username: userData.userName,
+      Firstname: userData.firstName,
+      Lastname: userData.lastName,
+    })
   }
 
   const save = () => {
     fetch("http://localhost:3001/api/v1/user/profile", {
       method: "PUT",
       headers: {
-        Authorization: `Bearer ${user}`,
+        Authorization: `Bearer ${userToken}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ userName: form.username }),
     })
       .then(async res => await res.json())
       .then(res => {
-        location.reload()
+        dispatch(
+          setUserData({
+            userName: res.body.userName,
+            lastName: res.body.lastName,
+            firstName: res.body.firstName,
+          }),
+        )
       })
   }
   return (
@@ -82,7 +96,6 @@ export default function User() {
                 <input
                   disabled
                   type="text"
-                  maxLength={15}
                   id="firstname"
                   name="firstname"
                   value={form.Firstname}
@@ -99,7 +112,6 @@ export default function User() {
                 <input
                   disabled
                   type="text"
-                  maxLength={15}
                   id="lastname"
                   name="lastname"
                   value={form.Lastname}

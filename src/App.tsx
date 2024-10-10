@@ -14,41 +14,19 @@ import SignIn from "./components/SingIn/SignIn"
 import User from "./components/User/User"
 import { Provider, useSelector } from "react-redux"
 import { storeV2 } from "./app/storeV2"
-import { selectUser } from "./app/cerateAppSliceV2"
+import { selectToken, selectUser } from "./app/cerateAppSliceV2"
 
 const RoutesComponent = () => {
-  const user = useSelector(selectUser)
+  const userToken = useSelector(selectToken)
   const routes = createRoutesFromElements(
     <>
       {/* <Route path="*" element={<ErrorPage />} /> */}
-      <Route
-        path="/"
-        element={<Home />}
-        loader={async () => {
-          if (user) {
-            let userData = null
-            await fetch("http://localhost:3001/api/v1/user/profile", {
-              method: "GET",
-              headers: {
-                Authorization: `Bearer ${user}`,
-              },
-            })
-              .then(res => {
-                return res.json()
-              })
-              .then(json => {
-                userData = json.body
-              })
-            return userData
-          }
-          return null
-        }}
-      />
+      <Route path="/" element={<Home />} />
       <Route
         path="sign-in"
         element={<SignIn />}
         loader={async () => {
-          if (user) {
+          if (userToken) {
             return redirect("/user")
           }
           return null
@@ -58,23 +36,10 @@ const RoutesComponent = () => {
         path="user"
         element={<User />}
         loader={async () => {
-          if (!user) {
+          if (!userToken) {
             return redirect("/sign-in")
           }
-          let userData = null
-          await fetch("http://localhost:3001/api/v1/user/profile", {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${user}`,
-            },
-          })
-            .then(res => {
-              return res.json()
-            })
-            .then(json => {
-              userData = json.body
-            })
-          return userData
+          return null
         }}
       />
     </>,

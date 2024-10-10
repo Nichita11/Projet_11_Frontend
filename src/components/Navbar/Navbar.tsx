@@ -6,13 +6,13 @@ import {
   faPowerOff,
 } from "@fortawesome/free-solid-svg-icons"
 import { Link, useLoaderData } from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { logout } from "../../app/cerateAppSliceV2"
+import { useDispatch, useSelector } from "react-redux"
+import { logout, selectUser } from "../../app/cerateAppSliceV2"
 
 export default function Navbar() {
   const dispatch = useDispatch()
   // @ts-ignore
-  const userData = useLoaderData()
+  const userData = useSelector(selectUser)
   // @ts-ignore
   const userName = userData?.userName
   return (
@@ -47,7 +47,7 @@ export default function Navbar() {
               size="2x"
             />
           </Link>
-          {userData !== null && (
+          {userName !== null && (
             <div className="main-nav-item" onClick={() => dispatch(logout())}>
               <FontAwesomeIcon
                 className="main-nav-icon"
